@@ -1,0 +1,41 @@
+API接口说明
+1. 获取集群资源配置信息
+   接口地址：
+   请求数据：{
+        "type": "tensorflow",
+        "version": "1.5.0",
+        "mode": "cluster",
+        "resource": {
+            "cpu": 2,
+            "mem": "4g",
+            "gpu": 1
+        },
+        "detail": {
+            "ps": 1,
+            "worker": 2
+        }
+        "api":{
+            "level":1,
+            "strategy":1
+        }
+    }
+    api[level] 表示用户使用的API级别：0-low，1-high
+    api[strategy] 表示用户使用的分布式策略，该字段只在使用高阶API时有效
+返回数据：{
+            'cluster': {'chief': ['localhost:2222']（可选）,
+                   'ps': ['localhost:2223', 'localhost:2224'](可选),
+                   'worker': ['localhost:2224', 'localhost:2225']},
+             'task': {'type': 'worker', 'index': 1}
+             }
+        }
+        如果是单机模式，返回cluster只包含一个worker节点即可
+
+2. 源码上传接口
+    上传源码包至服务器:  服务器磁盘存储？hdfs
+3. 源码分发接口：
+    分发代码至worker节点
+4. 数据上传
+    训练数据和测试数据上传
+
+
+
